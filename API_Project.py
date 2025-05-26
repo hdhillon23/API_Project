@@ -10,8 +10,15 @@ def get_meal(keyword):
     data = response.json()
 
 # Check if a meal is found
+    if data["meals"] is None:
+        return None
+    
+    meal = data["meals"][0]  # Select first meal
 
-# Get meal details with default values if missin
+# Get meal details with default values if missing
+    name = meal.get("strMeal", "N/A")
+    category = meal.get("strCategory", "N/A")
+    area = meal.get("strArea", "N/A")
 
 # Find two ingredients
 
