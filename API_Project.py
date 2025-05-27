@@ -33,6 +33,11 @@ def get_meal(keyword):
     }
 
 # Fetch jokes from API
+def get_food_joke():
+    all_jokes = []
+    for _ in range(3):  # Get ~30 jokes
+        response = requests.get("https://official-joke-api.appspot.com/jokes/ten")
+        all_jokes.extend(response.json())
 
 # Filter jokes realted to food
 
