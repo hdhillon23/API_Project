@@ -54,14 +54,44 @@ def show_info():
         output.set("Please enter a meal or ingredient keyword.")
         return
 
-# Get meal details
+    # Get meal details
     meal = get_meal(keyword)
     if meal is None:
         output.set(f"No meals found for '{keyword}'. Try another keyword.")
         return
 
-# Get a food related joke
+    # Get a food related joke
+    setup, punchline = get_food_joke()
 
-# Display meal info and joke
+    # Display meal info and joke
+    text = (
+        f"Meal Name: {meal['name']}\n"
+        f"Category: {meal['category']}\n"
+        f"Cuisine: {meal['area']}\n"
+        f"Main Ingredient 1: {meal['ingredient1']}\n"
+        f"Main Ingredient 2: {meal['ingredient2']}\n\n"
+        "Here's a food-related joke for you:\n"
+        f"{setup}\n{punchline}"
+    )
+    output.set(text)
 
-# Set up GUI window
+    # Set up GUI window
+    root = tk.Tk()
+    root.title("Meal & Food Joke Finder")
+    root.geometry("600x400")
+
+    tk.Label(root, text="Enter meal or ingredient:", font=("Arial", 14)).pack(pady=10)
+
+    entry = tk.Entry(root, font=("Arial", 14))
+    entry.pack(pady=5, fill='x', padx=20)
+
+    btn = tk.Button(root, text="Get Meal & Joke", font=("Arial", 14), command=show_info)
+    btn.pack(pady=10)
+
+    output = tk.StringVar()
+    label = tk.Label(root, textvariable=output, font=("Arial", 12), justify="left", wraplength=560)
+    label.pack(padx=20, pady=10)
+
+    root.mainloop()
+
+    
