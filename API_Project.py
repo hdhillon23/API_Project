@@ -9,18 +9,18 @@ def get_meal(keyword):
     respose = requests.get(url)
     data = response.json()
 
-# Check if a meal is found
+    # Check if a meal is found
     if data["meals"] is None:
         return None
     
     meal = data["meals"][0]  # Select first meal
 
-# Get meal details with default values if missing
+    # Get meal details with default values if missing
     name = meal.get("strMeal", "N/A")
     category = meal.get("strCategory", "N/A")
     area = meal.get("strArea", "N/A")
 
-# Find two ingredients
+    # Find two ingredients
     ingredients = [meal.get(f"strIngredient{i}", "N/A").strip() for i in range(1, 21) if meal.get(f"strIngredient{i}")]
     ingredients = ingredients[:2] if len(ingredients) >= 2 else ingredients + ["N/A"] * (2 - len(ingredients))
 
@@ -39,11 +39,13 @@ def get_food_joke():
         response = requests.get("https://official-joke-api.appspot.com/jokes/ten")
         all_jokes.extend(response.json())
 
-# Filter jokes related to food
+        # Filter jokes related to food
         food_words = ["food", "eat", "meal", "chicken", "pizza", "burger", "hungry", "cook", "kitchen"]
         food_jokes = [j for j in all_jokes if any(word in (j["setup"] + j["punchline"]).lower() for word in food_words)]
 
-# Select a joke
+        # Select a joke
+        joke = random.choice(food_jokes) if food_jokes else random.choice(all_jokes)
+        return joke["setup"], joke["punchline"]
 
 # Get meal details
 
