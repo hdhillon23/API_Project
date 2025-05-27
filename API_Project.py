@@ -21,6 +21,16 @@ def get_meal(keyword):
     area = meal.get("strArea", "N/A")
 
 # Find two ingredients
+    ingredients = [meal.get(f"strIngredient{i}", "N/A").strip() for i in range(1, 21) if meal.get(f"strIngredient{i}")]
+    ingredients = ingredients[:2] if len(ingredients) >= 2 else ingredients + ["N/A"] * (2 - len(ingredients))
+
+    return {
+        "name": name,
+        "category": category,
+        "area": area,
+        "ingredient1": ingredients[0],
+        "ingredient2": ingredients[1]
+    }
 
 # Fetch jokes from API
 
