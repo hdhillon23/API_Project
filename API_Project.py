@@ -47,6 +47,13 @@ def get_food_joke():
         joke = random.choice(food_jokes) if food_jokes else random.choice(all_jokes)
         return joke["setup"], joke["punchline"]
 
+# Get user input
+def show_info():
+    keyword = entry.get().strip()
+    if not keyword:
+        output.set("Please enter a meal or ingredient keyword.")
+        return
+
 # Get meal details
 
 # Get a food related joke
