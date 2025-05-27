@@ -55,6 +55,10 @@ def show_info():
         return
 
 # Get meal details
+    meal = get_meal(keyword)
+    if meal is None:
+        output.set(f"No meals found for '{keyword}'. Try another keyword.")
+        return
 
 # Get a food related joke
 
