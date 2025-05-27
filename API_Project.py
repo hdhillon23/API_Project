@@ -39,7 +39,9 @@ def get_food_joke():
         response = requests.get("https://official-joke-api.appspot.com/jokes/ten")
         all_jokes.extend(response.json())
 
-# Filter jokes realted to food
+# Filter jokes related to food
+        food_words = ["food", "eat", "meal", "chicken", "pizza", "burger", "hungry", "cook", "kitchen"]
+        food_jokes = [j for j in all_jokes if any(word in (j["setup"] + j["punchline"]).lower() for word in food_words)]
 
 # Select a joke
 
